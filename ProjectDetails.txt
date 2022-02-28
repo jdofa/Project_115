@@ -1,0 +1,54 @@
+-------------------------------------- Part 1 ---
+
+Algorithms to code:
+1.Insertion ------ Not Completed
+2.Selection ------ Completed
+3.Bubble --------- Not Completed
+4.Merge sort ----- Not Completed
+5.Quicksort ------ Not Completed
+6.Heapsort ------- Not Completed
+7.Counting Sort -- Not Completed
+8.Radix Sort ----- Not Completed
+
+
+------------ #1 Analysis - Give best,average, and worst cases for each
+1.Insertion ------ Not Completed
+2.Selection ------ Not Completed
+3.Bubble --------- Not Completed
+4.Merge sort ----- Not Completed
+5.Quicksort ------ Not Completed
+6.Heapsort ------- Not Completed
+7.Counting Sort -- Not Completed
+8.Radix Sort ----- Not Completed
+
+------------ #2 Data generation and experimental setup
+1.Insertion ------ Not Completed
+2.Selection ------ Not Completed
+3.Bubble --------- Not Completed
+4.Merge sort ----- Not Completed
+5.Quicksort ------ Not Completed
+6.Heapsort ------- Not Completed
+7.Counting Sort -- Not Completed
+8.Radix Sort ----- Not Completed
+
+------------ #3 After gathering data, we can answer Questions #4 & #5 --- Not Completed
+
+Deliverables
+1.Report part 1 - Answer questions
+2.Code part 1 - with read me file providing instructions on how to run code
+
+
+
+
+
+-------------------------------------- Part 2 ---
+
+------------ #1 Create brute force algorithm + pseudo code + running time analysis --- Not Completed
+
+------------ #2 Create efficient algorithm + pseudo code + running time analysis ----- Not Completed
+
+Deliverables
+1.Report part 2 - Answer questions
+2.Code part 2 - with read me file providing instructions on how to run code
+
+

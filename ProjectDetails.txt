@@ -4,7 +4,7 @@ Algorithms to code:
 1.Insertion ------ Not Completed
 2.Selection ------ Completed
 3.Bubble --------- Not Completed
-4.Merge sort ----- Not Completed
+4.Merge sort ----- Code file uploaded
 5.Quicksort ------ Not Completed
 6.Heapsort ------- Not Completed
 7.Counting Sort -- Not Completed

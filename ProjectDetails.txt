@@ -6,7 +6,7 @@ Algorithms to code:
 3.Bubble --------- Not Completed
 4.Merge sort ----- Code file uploaded
 5.Quicksort ------ Not Completed
-6.Heapsort ------- Not Completed
+6.Heapsort ------- Completed
 7.Counting Sort -- Not Completed
 8.Radix Sort ----- Not Completed
 

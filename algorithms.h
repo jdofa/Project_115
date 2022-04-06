@@ -9,6 +9,7 @@ void swap(int arr[], int j, int k)
 	int temp = arr[j];
 	arr[j] = arr[k];
 	arr[k] = temp;
+	return;
 }
 
 //Insertion Sort
@@ -153,17 +154,13 @@ void quickSort(int a[], int p, int r) {
 //Heapsort
 void max_heapify(int a[], int i, int n)
 {
-	int leftChild = 2 * i;
-	int rightChild = 2 * i + 1;
-	int largest;
+	int leftChild = 2 * i + 1;
+	int rightChild = 2 * i + 2;
+	int largest = i;
 
 	if (leftChild <= n && a[leftChild] > a[i])
 	{
 		largest = leftChild;
-	}
-	else
-	{
-		largest = i;
 	}
 
 	if (rightChild <= n && a[rightChild] > a[largest])
@@ -176,20 +173,22 @@ void max_heapify(int a[], int i, int n)
 		swap(a, i, largest);
 		max_heapify(a, largest, n);
 	}
+	return;
 }
 
 void heapSort(int a[], int n)
 {
-	for (int i = n / 2; i >= 0; i--)
+	for (int i = n / 2 - 1; i >= 0; i--)
 	{
 		max_heapify(a, i, n);
 	}
 
-	for (int i = n; i >= 0; i--)
+	for (int i = n - 1; i >= 0; i--)
 	{
 		swap(a, 0, i);
 		max_heapify(a, 0, i - 1);
 	}
+	return;
 }
 
 //Counting Sort

@@ -157,7 +157,7 @@ void max_heapify(int a[], int i, int n)
 	int rightChild = 2 * i + 1;
 	int largest;
 
-	if (l <= n && Arr[leftChild] > Arr[i])
+	if (leftChild <= n && a[leftChild] > a[i])
 	{
 		largest = leftChild;
 	}
@@ -166,7 +166,7 @@ void max_heapify(int a[], int i, int n)
 		largest = i;
 	}
 
-	if (r <= n && Arr[rightChild] > Arr[largest])
+	if (rightChild <= n && a[rightChild] > a[largest])
 	{
 		largest = rightChild;
 	}

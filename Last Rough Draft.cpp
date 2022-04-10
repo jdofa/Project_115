@@ -3,7 +3,7 @@
 //Missing:coutingand radix arrays
 //check the time not modified
 
-#include "Algorithms.h"
+#include "algorithms.h"
 #include <iostream>
 #include <time.h>
 #include <chrono>

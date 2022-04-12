@@ -1,6 +1,6 @@
+
 #include "algorithms.h"
 #include <iostream>
-#include <time.h>
 #include <chrono>
 #include <iomanip>
 
@@ -14,28 +14,39 @@ void fillReverse(int a[], int size);
 void fillRandom(int a[], int size);
 void print(int a[], int n);
 
+//The google document has Question 1 answered. Use those answers to fill in switch cases below.
 
 int main()
 {
-	int sorted[20];
+	//variable 'size' can only go up to around 64,000. 
+
+	const int size = 64000; //changes size to all arrays, only variable needed to change when testing
+
+	//Initializes a sorted array
+	int sorted[size];
 	int sortedSize = sizeof(sorted) / sizeof(sorted[0]);
 	fillSorted(sorted, sortedSize);
 
-	int halfsorted[20];
+	//Initializes a half sorted array
+	int halfsorted[size];
 	int halfSortedSize = sizeof(halfsorted) / sizeof(halfsorted[0]);
-	fillHalfsorted(halfsorted, halfSortedSize);
+	fillHalfsorted(halfsorted, halfSortedSize);;
 
-	int reverse[20];
+	//Initializes a reversed array
+	int reverse[size];
 	int reverseSize = sizeof(reverse) / sizeof(reverse[0]);
 	fillReverse(reverse, reverseSize);
 
-	int random[20];
+	//Initializes a random array
+	int random[size];
 	int randomSize = sizeof(random) / sizeof(random[0]);
 	fillRandom(random, randomSize);
-	print(random, randomSize);
+
 	cout << endl;
 
 	while (true) {
+
+		//All algorithm's best/average/worst cases to time
 		int choice;
 		cout << "Choose 1 - 7" << endl;
 		cout << "Choice 1: Insertion Sort Worst Case" << endl;
@@ -49,18 +60,33 @@ int main()
 		cin >> choice;
 		cout << endl;
 
+		//need to define these variables outside of switch first
+		auto start = high_resolution_clock::now();
+		auto stop = high_resolution_clock::now();
+		auto executionTime = duration_cast<milliseconds>(stop - start);
+
 		switch (choice) {
-		case 1:
+		case 1: // <----------------------------------- use this case as an outline for rest of cases
+
+			//give name to the choice
 			cout << "Choice 1: Insertion Sort Worst Case" << endl;
+
+			//print array to be sorted
 			cout << "Array To Be Sorted: ";
-			arrayInfo(reverse, reverseSize);
-			//start time
+			arrayInfo(reverse, reverseSize); //use arrayInfo, only prints first 10 and last 10 elements of n size array 
+
+			//measure algorithm's time
+			start = high_resolution_clock::now();
 			insertionSort(reverse, reverseSize);
-			//end time
-			//executionTime = end time - start time
+			stop = high_resolution_clock::now();
+			executionTime = duration_cast<milliseconds>(stop - start);
+
+			//print out the array after being sorted
 			cout << "Sorted Array: ";
-			arrayInfo(reverse, reverseSize);
-			cout << "Execution Time: " << /*executionTime << */"[unit of measurement]" << endl;
+			arrayInfo(reverse, reverseSize); //use arrayInfo, only prints first 10 and last 10 elements of n size array 
+
+			//Finally print out execution time of the algorithm
+			cout << "Execution Time: " << executionTime.count() << " milliseconds" << endl;
 			break;
 
 		case 2:
@@ -94,6 +120,12 @@ int main()
 			cout << "Invalid Choice";
 		}
 		cout << endl << endl;
+
+		//This is to ensure that the next iteration, we have correct pre-sorted array
+		fillSorted(sorted, sortedSize);
+		fillHalfsorted(halfsorted, halfSortedSize);
+		fillReverse(reverse, reverseSize);
+		fillRandom(random, randomSize);
 	}
 	return 0;
 }
@@ -151,7 +183,7 @@ void arrayInfo(int arr[], int size)
 }
 
 void print(int a[], int n) {
-	cout << "Printing Array: {" << a[0];
+	cout << "Array: {" << a[0];
 	for (int i = 1; i < n; i++) {
 		cout << ", " << a[i];
 	}

@@ -114,85 +114,69 @@ void mergeSort(int a[], int left, int right) {
 	return;
 }
 
-//Quicksort with pivot as first element
-int partition(int a[], int low, int high) {
-	int pivot = a[low];
-	int i = low - 1;
-	int j = high + 1;
-	bool jB = true;
-	while (jB) {
-		j--;
-		if (a[j] <= pivot) {
-			jB = false;
+//Quicksort 
+int partition(int arr[], int low, int high) {
+	int pivot = arr[high];
+	int i = (low - 1);
+
+	for (int j = low; j <= high - 1; j++) {
+		if (arr[j] <= pivot) {
+			i++;
+			swap(arr[i], arr[j]);
 		}
 	}
-	bool iB = true;
-	while (iB) {
-		i++;
-		if (a[i] >= pivot) {
-			iB = false;
-		}
+	swap(arr[i + 1], arr[high]);
+	return (i + 1);
+}
+
+int getMedian(int arr[], int first, int last) {
+	int mid = (last - first) / 2;
+
+	if ((arr[first] < arr[mid] and arr[mid] < arr[last]) or (arr[last] < arr[mid] and arr[mid] < arr[first])) {
+		return mid;
 	}
-	if (i < j) {
-		swap(a, i, j);
+
+	if ((arr[mid] < arr[first] and arr[first] < arr[last]) or (arr[last] < arr[first] and arr[first] < arr[mid])) {
+		return first;
 	}
 	else {
-		return j;
+		return last;
 	}
-	return 0;
 }
 
-void quickSort(int a[], int p, int r) {
-	if (p < r) {
-		int q = partition(a, p, r);
-		quickSort(a, p, q);
-		quickSort(a, q + 1, r);
-	}
-	return;
+int partition_random(int arr[], int low, int high) {
+	srand(high);
+	int random = low + rand() % (high - low);
+	swap(arr[random], arr[high]);
+	return partition(arr, low, high);
 }
 
-//Quicksort with median pivot
-int partition2(int a[], int low, int high) {
-	int middle = (high + low) / 2;
-	int median = (low + middle + high) / 3;
-	int pivot = a[median];
-	int i = low - 1;
-	int j = high + 1;
+int partition_median(int arr[], int low, int high) {
+	int median = getMedian(arr, low, high);
+	swap(arr[median], arr[high]);
+	return partition(arr, low, high);
+}
 
-	bool jB = true;
-	while (jB) {
-		j--;
-		if (a[j] <= pivot) {
-			jB = false;
+int partition_first(int arr[], int low, int high) {
+	swap(arr[low], arr[high]);
+	return partition(arr, low, high);
+}
+
+void quickSort(int arr[], int low, int high, int choice) {
+	if (low < high) {
+		int pi;
+		if (choice == 1) {
+			pi = partition_first(arr, low, high);
 		}
-	}
-
-	bool iB = true;
-	while (iB) {
-		i++;
-		if (a[i] >= pivot) {
-			iB = false;
+		else if (choice == 2) {
+			pi = partition_random(arr, low, high);
 		}
+		else if (choice == 3) {
+			pi = partition_median(arr, low, high);
+		}
+		quickSort(arr, low, pi - 1, choice);
+		quickSort(arr, pi + 1, high, choice);
 	}
-
-	if (i < j) {
-		int temp = a[i];
-		a[i] = a[j];
-		a[j] = temp;
-	}
-	else {
-		return j;
-	}
-	return 0;
-}
-
-void quickSort_medianpivot(int a[], int p, int r) {
-	if (p < r) {
-		int q = partition2(a, p, r);
-		quickSort_medianpivot(a, p, q);
-		quickSort_medianpivot(a, q + 1, r);
-	}
-	return;
 }
 
 //Heapsort
@@ -261,35 +245,44 @@ void countingSort(int a[], int b[], int n) {
 	return;
 }
 
-//Radix Sort
-void radixSort(int a[], int b[], int n) {
-	int largest = a[0];
+//Radix Sort using Counting Sort
+int getMax(int array[], int n) {
+	int maxVal = array[0];
 	for (int i = 1; i < n; i++) {
-		if (largest < a[i]) {
-			largest = a[i];
+		if (array[i] > maxVal) {
+			maxVal = array[i];
 		}
 	}
-	double d = floor(log10(largest) + 1);
-	for (int z = 1; z <= d; z++) {
-		int aux[10];
-		for (int i = 0; i < 10; i++) {
-			aux[i] = 0;
-		}
-		for (int i = 0; i < n; i++) {
-			int squish = floor((fmod(a[i], pow(10, z)) / pow(10, z - 1)));
-			aux[squish]++;
-		}
-		for (int i = 1; i < 9; i++) {
-			aux[i] = aux[i] + aux[i - 1];
-		}
-		for (int i = n - 1; i >= 0; i--) {
-			int squish = floor((fmod(a[i], pow(10, z)) / pow(10, z - 1)));
-			b[aux[squish] - 1] = a[i];
-			aux[squish]--;
-		}
-		for (int i = 0; i < n; i++) {
-			a[i] = b[i];
-		}
+	return maxVal;
+}
+
+void countSort(int array[], int output[], int n, int exp) {
+
+	int i, count[10] = { 0 };
+
+	for (i = 0; i < n; i++) {
+		count[(array[i] / exp) % 10]++;
 	}
-	return;
+
+	for (i = 1; i < 10; i++) {
+		count[i] += count[i - 1];
+	}
+
+	for (i = n - 1; i >= 0; i--) {
+		output[count[(array[i] / exp) % 10] - 1] = array[i];
+		count[(array[i] / exp) % 10]--;
+	}
+
+	for (i = 0; i < n; i++) {
+		array[i] = output[i];
+	}
+}
+
+void radixSort(int array[], int output[], int n) {
+
+	int m = getMax(array, n);
+
+	for (int exp = 1; m / exp > 0; exp *= 10) {
+		countSort(array, output, n, exp);
+	}
 }

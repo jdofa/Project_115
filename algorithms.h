@@ -49,7 +49,7 @@ void selectionSort(int a[], int n) {
 //Bubble Sort
 void bubbleSort(int arr[], int size)
 {
-	for (int i = 0; i < size-1; i++)
+	for (int i = 0; i < size - 1; i++)
 	{
 		for (int j = 0; j < size - i - 1; j++)
 		{
@@ -114,7 +114,7 @@ void mergeSort(int a[], int left, int right) {
 	return;
 }
 
-//Quicksort
+//Quicksort with pivot as first element
 int partition(int a[], int low, int high) {
 	int pivot = a[low];
 	int i = low - 1;
@@ -147,6 +147,50 @@ void quickSort(int a[], int p, int r) {
 		int q = partition(a, p, r);
 		quickSort(a, p, q);
 		quickSort(a, q + 1, r);
+	}
+	return;
+}
+
+//Quicksort with median pivot
+int partition2(int a[], int low, int high) {
+	int middle = (high + low) / 2;
+	int median = (low + middle + high) / 3;
+	int pivot = a[median];
+	int i = low - 1;
+	int j = high + 1;
+
+	bool jB = true;
+	while (jB) {
+		j--;
+		if (a[j] <= pivot) {
+			jB = false;
+		}
+	}
+
+	bool iB = true;
+	while (iB) {
+		i++;
+		if (a[i] >= pivot) {
+			iB = false;
+		}
+	}
+
+	if (i < j) {
+		int temp = a[i];
+		a[i] = a[j];
+		a[j] = temp;
+	}
+	else {
+		return j;
+	}
+	return 0;
+}
+
+void quickSort_medianpivot(int a[], int p, int r) {
+	if (p < r) {
+		int q = partition2(a, p, r);
+		quickSort_medianpivot(a, p, q);
+		quickSort_medianpivot(a, q + 1, r);
 	}
 	return;
 }

@@ -61,17 +61,17 @@ int main()
 	cout << "Choice 7: Bubble Sort's Best Case" << endl;
 	cout << "Choice 8: Merge Sort's Worst/Average/Best Cases" << endl;
 	cout << "Choice 9: Quick Sort's Worst Case" << endl;
-	cout << "Choice 10: Quick Sort's Average Case" << endl;
+	cout << "(logical error in algorithm?) Choice 10: Quick Sort's Average Case" << endl;
 	cout << "Choice 11: Quick Sort's Best Case" << endl;
-	cout << "Choice 12: Heap Sort's Worst Case" << endl;
-	cout << "Choice 13: Heap Sort's Average Case" << endl;
-	cout << "Choice 14: Heap Sort's Best Case" << endl;
-	cout << "Choice 15: Counting Sort's Worst Case" << endl;
+	cout << "(not done) Choice 12: Heap Sort's Worst Case" << endl;
+	cout << "(not done) Choice 13: Heap Sort's Average Case" << endl;
+	cout << "(not done) Choice 14: Heap Sort's Best Case" << endl;
+	cout << "(not done) Choice 15: Counting Sort's Worst Case" << endl;
 	cout << "Choice 16: Counting Sort's Average Case" << endl;
 	cout << "Choice 17: Counting Sort's Best Case" << endl;
-	cout << "Choice 18: Radix Sort's Worst Case" << endl;
-	cout << "Choice 19: Radix Sort's Average Case" << endl;
-	cout << "Choice 20: Radix Sort's Best Case" << endl;
+	cout << "(not done) Choice 18: Radix Sort's Worst Case" << endl;
+	cout << "(not done) Choice 19: Radix Sort's Average Case" << endl;
+	cout << "(not done) Choice 20: Radix Sort's Best Case" << endl;
 
 
 	// ----- Switch Case In While Loop For Infinite Testing ----- //

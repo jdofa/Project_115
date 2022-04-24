@@ -13,9 +13,8 @@ void fillHalfsorted(int a[], int size);
 void fillReverse(int a[], int size);
 void fillRandom(int a[], int size);
 void fillSame(int a[], int size, int fillWith);
+void fillSkewed(int a[], int size);
 void print(int a[], int n);
-
-//The google document has Question 1 answered. Use those answers to fill in switch cases below.
 
 int main()
 {
@@ -45,9 +44,14 @@ int main()
 	int identical[size];
 	fillSame(identical, size, 1);
 
+	//Initializes an array that is skewed with big range
+	int skewed[size];
+	fillSkewed(skewed, size);
+
 	//Empty Array for Counting Sort
 	int result[size] = { 0 };
-	int resultSize = sizeof(result) / sizeof(result[0]);
+
+
 
 	// ----- Printing Information For User ----- //
 	int choice;
@@ -61,12 +65,12 @@ int main()
 	cout << "Choice 7: Bubble Sort's Best Case" << endl;
 	cout << "Choice 8: Merge Sort's Worst/Average/Best Cases" << endl;
 	cout << "Choice 9: Quick Sort's Worst Case" << endl;
-	cout << "(logical error in algorithm?) Choice 10: Quick Sort's Average Case" << endl;
+	cout << "(logical error in algorithm) Choice 10: Quick Sort's Average Case" << endl;
 	cout << "Choice 11: Quick Sort's Best Case" << endl;
 	cout << "(not done) Choice 12: Heap Sort's Worst Case" << endl;
 	cout << "(not done) Choice 13: Heap Sort's Average Case" << endl;
 	cout << "(not done) Choice 14: Heap Sort's Best Case" << endl;
-	cout << "(not done) Choice 15: Counting Sort's Worst Case" << endl;
+	cout << "Choice 15: Counting Sort's Worst Case" << endl;
 	cout << "Choice 16: Counting Sort's Average Case" << endl;
 	cout << "Choice 17: Counting Sort's Best Case" << endl;
 	cout << "(not done) Choice 18: Radix Sort's Worst Case" << endl;
@@ -285,7 +289,19 @@ int main()
 			break;
 		case 15:
 			cout << "Choice 15: Counting Sort's Worst Case" << endl;
-			//skewed data <-- not exactly sure how to generate this array
+
+			cout << "Sorted Array: ";
+			arrayInfo(skewed, size);
+
+			start = high_resolution_clock::now();
+			countingSort(skewed, result, size);
+			stop = high_resolution_clock::now();
+			executionTime = duration_cast<microseconds>(stop - start);
+
+			cout << "Sorted Array: ";
+			arrayInfo(result, size);
+
+			cout << "Execution Time: " << executionTime.count() << " microseconds" << endl;
 			break;
 		case 16: // Counting Sort where the biggest number in the array is the size of it, n = k
 			cout << "Choice 16: Counting Sort's Average Case" << endl;
@@ -341,6 +357,7 @@ int main()
 		fillReverse(reverse, size);
 		fillRandom(random, size);
 		fillSame(identical, size, 1);
+		fillSkewed(skewed, size);
 	}
 	return 0;
 }
@@ -399,6 +416,16 @@ void fillSame(int a[], int size, int fillWith) {
 	return;
 }
 
+void fillSkewed(int a[], int size) {
+	for (int i = 0; i < size - ((size * 2) / 10); i++) {
+		a[i] = 10;
+	}
+
+	for (int i = size - ((size * 2) / 10); i < size; i++) {
+		a[i] = 10000;
+	}
+	return;
+}
 
 
 void arrayInfo(int arr[], int size)

@@ -129,30 +129,9 @@ int partition(int arr[], int low, int high) {
 	return (i + 1);
 }
 
-int getMedian(int arr[], int first, int last) {
-	int mid = (last - first) / 2;
-
-	if ((arr[first] < arr[mid] and arr[mid] < arr[last]) or (arr[last] < arr[mid] and arr[mid] < arr[first])) {
-		return mid;
-	}
-
-	if ((arr[mid] < arr[first] and arr[first] < arr[last]) or (arr[last] < arr[first] and arr[first] < arr[mid])) {
-		return first;
-	}
-	else {
-		return last;
-	}
-}
-
-int partition_random(int arr[], int low, int high) {
-	srand(high);
-	int random = low + rand() % (high - low);
-	swap(arr[random], arr[high]);
-	return partition(arr, low, high);
-}
-
 int partition_median(int arr[], int low, int high) {
-	int median = getMedian(arr, low, high);
+	int middle = (high + low) / 2;
+	int median = (low + middle + high) / 3;
 	swap(arr[median], arr[high]);
 	return partition(arr, low, high);
 }
@@ -162,22 +141,27 @@ int partition_first(int arr[], int low, int high) {
 	return partition(arr, low, high);
 }
 
-void quickSort(int arr[], int low, int high, int choice) {
+void quickSort1(int arr[], int low, int high) {
 	if (low < high) {
-		int pi;
-		if (choice == 1) {
-			pi = partition_first(arr, low, high);
-		}
-		else if (choice == 2) {
-			pi = partition_random(arr, low, high);
-		}
-		else if (choice == 3) {
-			pi = partition_median(arr, low, high);
-		}
-		quickSort(arr, low, pi - 1, choice);
-		quickSort(arr, pi + 1, high, choice);
+		int pi = partition_first(arr, low, high);
+		quickSort1(arr, low, pi - 1);
+		quickSort1(arr, pi + 1, high);
 	}
+	return;
 }
+
+void quickSort2(int arr[], int low, int high) {
+	if (low < high) {
+		int pi = partition_median(arr, low, high);
+		quickSort2(arr, low, pi - 1);
+		quickSort2(arr, pi + 1, high);
+	}
+	return;
+}
+
+
+
+
 
 //Heapsort
 void max_heapify(int a[], int i, int n)

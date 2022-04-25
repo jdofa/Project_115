@@ -1,4 +1,3 @@
-
 #include "algorithms.h"
 #include <iostream>
 #include <chrono>
@@ -21,7 +20,7 @@ int main()
 {
 
 	// ----- Variable Used For Testing ----- //
-	const int size = 1000;
+	const int size = 3000;
 
 
 	// ----- Initializing Arrays ----- //
@@ -242,7 +241,7 @@ int main()
 			arrayInfo(sorted, size);
 
 			start = high_resolution_clock::now();
-			quickSort(sorted, 0, size - 1, 1);
+			quickSort1(sorted, 0, size - 1);
 			stop = high_resolution_clock::now();
 			executionTime = duration_cast<microseconds>(stop - start);
 
@@ -259,7 +258,7 @@ int main()
 			arrayInfo(random, size);
 
 			start = high_resolution_clock::now();
-			quickSort(random, 0, size - 1, 3);
+			quickSort2(random, 0, size - 1);
 			stop = high_resolution_clock::now();
 			executionTime = duration_cast<microseconds>(stop - start);
 
@@ -276,7 +275,7 @@ int main()
 			arrayInfo(sorted, size);
 
 			start = high_resolution_clock::now();
-			quickSort(sorted, 0, size - 1, 3);
+			quickSort2(sorted, 0, size - 1);
 			stop = high_resolution_clock::now();
 			executionTime = duration_cast<microseconds>(stop - start);
 

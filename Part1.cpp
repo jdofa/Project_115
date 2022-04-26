@@ -78,7 +78,7 @@ int main()
 	cout << "Choice 17: Radix Sort's Worst Case" << endl;
 	cout << "Choice 18: Radix Sort's Average Case" << endl;
 	cout << "Choice 19: Radix Sort's Best Case" << endl;
-
+	cout << "Choice 20: Exit" << endl;
 
 	// ----- Switch Case In While Loop For Infinite Testing ----- //
 	while (true) {
@@ -420,7 +420,10 @@ int main()
 
 			cout << "Execution Time: " << executionTime.count() << " microseconds" << endl;
 			break;
-
+		case 20:
+           		return 0;
+            		break;
+     
 		default:
 			cout << "Invalid Choice" << endl;
 		}

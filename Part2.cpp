@@ -21,6 +21,25 @@ int sumCheckBrute(int A[], int n, int k)
     return total;
 }
 
+int sumCheckEfficient(int A[], int n, int k)
+{
+    int total = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            int number = A[i] + A[j];
+            if (number == k)
+            {
+                total++;
+            }
+        }
+    }
+
+    return total;
+}
+
 void buildArray(int* A, int k)
 {
     int i = 0;
@@ -37,19 +56,43 @@ int main()
     int array[length];
     int target = length;
     int x;                                                                      // variable for the number of iterations two indices add up to target
+    int input;
 
     buildArray(array, length);
 
+    std::cout << "Enter [0] for brute force method\n";
+    std::cout << "Enter [1] for efficient method\n";
+    std::cout << "Enter any other digit to exit program\n";
+    std::cin >> input;
+
     time_point <system_clock> start, stop;
 
-    start = system_clock::now();
-    x = sumCheckBrute(array, length, target);
-    stop = system_clock::now();
+    while (input == 0 || input == 1)
+    {
+        start = system_clock::now();
 
-    duration <double> exe_time = stop - start;
+        if (!(input))
+        {
+            x = sumCheckBrute(array, length, target);
 
-    std::cout << "Brute force method execution time: " << exe_time.count() << " seconds\n";
-    std::cout << "Number of times two indices equal target: " << x << " times\n";
+            stop = system_clock::now();
+            duration <double> exe_time = stop - start;
+
+            std::cout << "Brute force method execution time: " << exe_time.count() << " seconds\n";
+        }
+        else
+        {
+            x = sumCheckEfficient(array, length, target);
+
+            stop = system_clock::now();
+            duration <double> exe_time = stop - start;
+
+            std::cout << "Efficient method execution time: " << exe_time.count() << " seconds\n";
+        }
+
+        std::cout << "Number of times two indices equal target: " << x << " times\n";
+        std::cin >> input;
+    }
 
     return 0;
 }

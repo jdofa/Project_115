@@ -1,10 +1,16 @@
-#include "algorithms.h"
+#include "algorithms.h" //make sure you also have included this file in your project
 #include <iostream>
 #include <chrono>
 #include <iomanip>
 
 using namespace std;
 using namespace std::chrono;
+
+/*
+This program measures the execution time of 8 different algorithms and it's cases. You can change the variable size in order to have these
+algorithms sort larger lists. Once the program is started, you only need to choose what algorithm you'd like to see in action. This is determined
+by entering an integer according with the choice number displayed. To exit the program, enter the number 20.
+*/
 
 void arrayInfo(int arr[], int size); //prints first and last 10 elements
 void fillSorted(int a[], int size); //fills an array in sorted manner
@@ -20,7 +26,7 @@ int main()
 {
 
 	// ----- Variable Used For Testing ----- //
-	const int size = 3000;
+	const int size = 30000;
 
 
 	// ----- Initializing Arrays ----- //
